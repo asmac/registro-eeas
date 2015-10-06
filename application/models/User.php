@@ -90,7 +90,7 @@ class User extends MY_Model {
 			$token         = $this->admin_auth->generate_mail_token($data['user']);
 			$data['token'] = $token;
 			$data['site']  = $this->config->item('base_url');
-			$message       = $this->load->view('mail_password', $data, TRUE);
+			$message       = $this->load->view('access/mail_password', $data, TRUE);
 
 			$this->load->library('email');
 			$this->email->to($data['mail']);

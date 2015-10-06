@@ -51,7 +51,7 @@ class Users extends MY_Controller {
 
 		$this->template->asset_js('crud.js');
 		$this->template->write('title', 'Usuarios');
-		$this->template->write_view('content', 'list', $data);
+		$this->template->write_view('content', 'users/list', $data);
 		$this->template->render();
 	}
 
@@ -77,7 +77,7 @@ class Users extends MY_Controller {
 			$data['active'] = 1;
 		}
 
-		$this->template->write_view('content', 'form', $data);
+		$this->template->write_view('content', 'users/form', $data);
 		$this->template->add_css('assets/vendor/switchery/switchery.css');
 		$this->template->add_js('assets/vendor/switchery/switchery.js');
 		$this->template->render();
@@ -117,7 +117,7 @@ class Users extends MY_Controller {
 		$data['form_title'] = 'Editar Usuario';
 		$data['breadcrumb'] = 'Editar';
 
-		$this->template->write_view('content', 'form', $data);
+		$this->template->write_view('content', 'users/form', $data);
 		$this->template->add_css('assets/vendor/switchery/switchery.css');
 		$this->template->add_js('assets/vendor/switchery/switchery.js');
 		$this->template->render();
