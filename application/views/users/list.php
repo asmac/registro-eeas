@@ -4,7 +4,7 @@
     <h1>Administradores</h1>
 
     <ol class="breadcrumb">
-      <li><a href="/admin">Inicio</a></li>
+      <li><a href="/">Inicio</a></li>
       <li class="active">Administradores</li>
     </ol>
   </div>
@@ -28,7 +28,7 @@
           <span class="input-group-btn">
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
           <?php if (!empty($search)): ?>
-            <a href="/admin/access" class="btn btn-default"><i class="fa fa-undo"></i></a>
+            <a href="/users" class="btn btn-default"><i class="fa fa-undo"></i></a>
           <?php endif ?>
 
           </span>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="col-sm-6 col-btn-add">
-        <a href="/admin/access/add" class="btn btn-success">
+        <a href="/users/add" class="btn btn-success">
           Agregar Nuevo
         </a>
       </div>
@@ -74,8 +74,8 @@
             <td class="text-center"><i class="fa <?php echo ($row->active == 0) ? 'fa-close red':'fa-check green' ?>"></i></td>
             <td class="text-center">
               <div class="btn-group table-options">
-                <a href="/admin/access/edit/<?php echo $row->id ?>" class="btn btn-default" title="editar"><i class="fa fa-pencil"></i></a>
-                <a href="/admin/access/delete/<?php echo $row->id ?>" class="btn btn-danger<?php echo ($row->id == 1 || $row->user == 'admin') ? ' disabled':'' ?>" title="eliminar"><i class="fa fa-trash-o"></i></a>
+                <a href="/users/edit/<?php echo $row->id ?>" class="btn btn-default" title="editar"><i class="fa fa-pencil"></i></a>
+                <a href="/users/delete/<?php echo $row->id ?>" class="btn btn-danger<?php echo ($row->id == 1 || $row->user == 'admin') ? ' disabled':'' ?>" title="eliminar"><i class="fa fa-trash-o"></i></a>
               </div>
             </td>
           </tr>

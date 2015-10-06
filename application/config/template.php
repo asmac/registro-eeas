@@ -56,13 +56,11 @@ $template['active_template'] = 'default';
 |--------------------------------------------------------------------------
 */
 
-$template['default']['template'] = 'layouts/site';
+$template['default']['template'] = 'layouts/admin';
 $template['default']['regions']  = array(
    'content',
    'title',
-   'body_class',
-   'base_dir' => array('content' => array('/')),
-   'home' => array('content' => array(0))
+   'body_class'
 );
 
 $template['default']['parser']         = 'parser';
@@ -70,19 +68,6 @@ $template['default']['parser_method']  = 'parse';
 $template['default']['parse_template'] = FALSE;
 $template['default']['autoload_lib']   = array();
 $template['default']['partials']       = array();
-
-
-$template['admin']['template'] = 'layouts/admin';
-$template['admin']['regions']  = array(
-   'content',
-   'title',
-   'body_class'
-);
-
-$template['admin']['parser']         = 'parser';
-$template['admin']['parser_method']  = 'parse';
-$template['admin']['parse_template'] = FALSE;
-$template['admin']['autoload_lib']   = array();
 
 /* End of file template.php */
 /* Location: ./system/application/config/template.php */

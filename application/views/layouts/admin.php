@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-  <title>Admin | <?php echo $title ?></title>
+  <title>Registro | <?php echo $title ?></title>
   <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="/assets/css/admin.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -27,7 +27,7 @@
       <div class="brand">
         <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
 
-        <a href="/admin" class="navbar-brand text-white">
+        <a href="/" class="navbar-brand text-white">
           <i class="fa fa-stop mg-r-sm"></i>
           <span class="heading-font">
             Panel <b>ADMIN</b>
@@ -49,7 +49,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
             <li>
-              <a href="/admin/access/edit/<?php echo $_SESSION['session_id'] ?>">Cambiar Contraseña</a>
+              <a href="/users/edit/<?php echo $_SESSION['session_id'] ?>">Cambiar Contraseña</a>
             </li>
             <li class="divider"></li>
             <li>
@@ -65,15 +65,15 @@
         <nav class="main-navigation">
           <ul>
             <li>
-              <a href="/admin">
+              <a href="/">
                 <i class="fa fa-dashboard"></i>
                 <span>Inicio</span>
               </a>
             </li>
             <li>
-              <a href="/admin/access">
+              <a href="/users">
                 <i class="fa fa-lock"></i>
-                <span>Administradores</span>
+                <span>Usuarios</span>
               </a>
             </li>
           </ul>

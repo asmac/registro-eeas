@@ -30,7 +30,6 @@ class MY_Controller extends CI_Controller {
 			redirect('access/blocked');
 		}
 
-		$this->template->set_template('admin');
 		$this->form_validation->set_error_delimiters('<div class="help-block">', '</div>');
 	}
 

@@ -16,7 +16,7 @@ class Access extends MY_Controller {
 
 		if ($this->form_validation->run()) {
 			if ($this->user->login($this->input->post('user', TRUE), $this->input->post('pass', TRUE))) {
-				redirect('admin');
+				redirect('/');
 			} else {
 				$this->session->set_flashdata('error', TRUE);
 				redirect('access');
@@ -31,18 +31,18 @@ class Access extends MY_Controller {
 
 	public function logout()
 	{
-		$this->users_auth->logout();
+		$this->user_auth->logout();
 		redirect('access');
 	}
 
 	public function blocked()
 	{
-		if (!$this->users_auth->is_blocked()) {
+		if (!$this->user_auth->is_blocked()) {
 			redirect('access');
 		}
 
 		$ip   = $this->input->ip_address();
-		$data = array('remaining' => $this->users_auth->time_remaining($ip));
+		$data = array('remaining' => $this->user_auth->time_remaining($ip));
 
 		$this->template->write('title', 'Blocked');
 		$this->template->write('body_class', 'login-page');
@@ -75,7 +75,7 @@ class Access extends MY_Controller {
 
 	public function reset_password($user = '', $token = '')
 	{
-		if (!$this->users_auth->validate_mail_token($user, $token)) {
+		if (!$this->user_auth->validate_mail_token($user, $token)) {
 			$this->session->set_flashdata('error', TRUE);
 			redirect('access');
 		}
