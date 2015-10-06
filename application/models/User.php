@@ -45,7 +45,7 @@ class User extends MY_Model {
 	protected function hash_password($data)
 	{
 		if (isset($data['pass']) && !empty($data['pass'])) {
-			$data['pass'] = $this->admin_auth->hash($data['pass']);
+			$data['pass'] = $this->user_auth->hash($data['pass']);
 		} else {
 			unset($data['pass']);
 		}
@@ -62,7 +62,7 @@ class User extends MY_Model {
 
 	public function login($user, $pass)
 	{
-		if ($this->admin_auth->login($user, $pass)) {
+		if ($this->user_auth->login($user, $pass)) {
 			$this->build_session('user', $user);
 			return TRUE;
 		} else {
@@ -87,7 +87,7 @@ class User extends MY_Model {
 
 		if ($query->num_rows() > 0) {
 			$data          = $query->row_array();
-			$token         = $this->admin_auth->generate_mail_token($data['user']);
+			$token         = $this->user_auth->generate_mail_token($data['user']);
 			$data['token'] = $token;
 			$data['site']  = $this->config->item('base_url');
 			$message       = $this->load->view('access/mail_password', $data, TRUE);
