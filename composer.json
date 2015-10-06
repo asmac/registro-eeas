@@ -4,6 +4,6 @@
 	},
 	"require-dev": {
 		"filp/whoops": "^1.1",
-		"codeigniter/framework": "^3.0"
+		"kenjis/ci-phpunit-test": "^0.8.1"
 	}
 }
