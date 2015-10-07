@@ -72,7 +72,7 @@ class Regnal extends MY_Controller {
 			redirect('regnal');
 		}
 
-		$data = $this->user->prepare_data($this->input->post('data'));
+		$data = $this->member->prepare_data($this->input->post('data'));
 		$data['form_title'] = 'Nuevo Miembro';
 		$data['breadcrumb'] = 'Nuevo';
 
@@ -86,7 +86,7 @@ class Regnal extends MY_Controller {
 			redirect('regnal');
 		}
 
-		$stored = $this->user->get($id)->row_array();
+		$stored = $this->member->get($id)->row_array();
 
 		$this->form_validation->set_rules('data[cum]', 'cum', 'required|trim');
 		$this->form_validation->set_rules('data[nombre]', 'nombre', 'required|trim');
@@ -103,7 +103,7 @@ class Regnal extends MY_Controller {
 			redirect('regnal');
 		}
 
-		$data = $this->user->prepare_data($this->input->post('data'), $stored);
+		$data = $this->member->prepare_data($this->input->post('data'), $stored);
 		$data['form_title'] = 'Editar Miembro';
 		$data['breadcrumb'] = 'Editar';
 
