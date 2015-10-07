@@ -77,6 +77,7 @@ class Regnal extends MY_Controller {
 		$data['breadcrumb'] = 'Nuevo';
 
 		$this->template->write_view('content', 'regnal/form', $data);
+		$this->template->write('title', 'Nuevo Miembro');
 		$this->template->render();
 	}
 
@@ -108,11 +109,17 @@ class Regnal extends MY_Controller {
 		$data['breadcrumb'] = 'Editar';
 
 		$this->template->write_view('content', 'users/form', $data);
+		$this->template->write('title', 'Editar Miembro');
 		$this->template->render();
 	}
 
 	public function delete($id = '')
 	{
+		if (!empty($id)) {
+			$this->member->delete($id);
+			$this->session->set_flashdata('msg_success', 'El miembro ha sido eliminado.');
+		}
+
 		redirect('regnal');
 	}
 
