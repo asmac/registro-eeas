@@ -78,6 +78,7 @@ class Users extends MY_Controller {
 		}
 
 		$this->template->write_view('content', 'users/form', $data);
+		$this->template->write('title', 'Nuevo');
 		$this->template->add_css('assets/vendor/switchery/switchery.css');
 		$this->template->add_js('assets/vendor/switchery/switchery.js');
 		$this->template->render();
@@ -118,6 +119,7 @@ class Users extends MY_Controller {
 		$data['breadcrumb'] = 'Editar';
 
 		$this->template->write_view('content', 'users/form', $data);
+		$this->template->write('title', 'Editar');
 		$this->template->add_css('assets/vendor/switchery/switchery.css');
 		$this->template->add_js('assets/vendor/switchery/switchery.js');
 		$this->template->render();
