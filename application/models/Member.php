@@ -12,12 +12,11 @@ class Member extends MY_Model {
 		parent::__construct();
 	}
 
-	public function search_proccedure($search = '')
+	public function search_procedure($search = '')
 	{
-		$this->db->where('nombre', $search);
-		$this->db->or_where('provincia', $search);
-		$this->db->or_where('localidad', $search);
-
+		$this->db->like('nombre', $search, 'both');
+		$this->db->or_like('provincia', $search, 'both');
+		$this->db->or_like('localidad', $search, 'both');
 		$this->db->order_by('provincia, localidad, nombre', 'asc');
 	}
 
