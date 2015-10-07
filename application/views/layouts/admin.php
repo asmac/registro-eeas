@@ -71,8 +71,14 @@
               </a>
             </li>
             <li>
+              <a href="/regnal">
+                <i class="fa fa-users"></i>
+                <span>Regnal</span>
+              </a>
+            </li>
+            <li>
               <a href="/users">
-                <i class="fa fa-lock"></i>
+                <i class="fa fa-user"></i>
                 <span>Usuarios</span>
               </a>
             </li>

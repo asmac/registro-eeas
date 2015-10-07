@@ -37,7 +37,7 @@ class Users extends MY_Controller {
 
 		$param['offset']      = '';
 		$config['total_rows'] = $this->user->found_rows();
-		$config['base_url']   = '/users/'.$this->uri->assoc_to_uri($param);
+		$config['base_url']   = '/users/index/'.$this->uri->assoc_to_uri($param);
 		$config['per_page']   = $num_results;
 
 		$this->pagination->initialize($config);
