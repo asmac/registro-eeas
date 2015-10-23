@@ -1,18 +1,39 @@
 $(function(){
 	$('#btn-delete').click(function(){
 		if($('input[type=checkbox]:checked').length){
-			if (confirm('Se eliminarán los elementos seleccionados')) {
-				$('#consulta').submit();
-			}
+			swal({
+				title: "Confirmar Acción",
+				text: "Los elementos seleccionados se eliminarán de forma permanente",
+				type: "warning",
+				showCancelButton: true,
+				closeOnConfirm: true
+			},
+			function (confirm) {
+				if(confirm) {
+					$('#consulta').submit();
+				}
+			});
 		} else {
-			alert('No se ha seleccionado ningún elemento.');
+			swal('Error', 'No se ha seleccionado ningún elemento.', 'error');
 		}
 	});
 
 	$('a[title=eliminar]').click(function(e){
-		if(! confirm('Eliminar el elemento')){
-			e.preventDefault();
-		}
+		e.preventDefault();
+
+		swal({
+			title: "Confirmar Acción",
+			text: "Eliminar elemento de forma permanente",
+			type: "warning",
+			showCancelButton: true,
+			closeOnConfirm: true
+		},
+		function (confirm) {
+			if (confirm) {
+				window.location.replace(e.currentTarget);
+			};
+		});
+
 	});
 
 	$('#detalle-usuario').on('hidden.bs.modal', function() {

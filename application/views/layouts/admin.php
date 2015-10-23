@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/assets/css/admin.css">
   <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/vendor/offline/theme.css">
+  <link rel="stylesheet" href="/assets/vendor/sweetalert/sweetalert.css">
 
   <?php echo $_styles ?>
 
@@ -124,6 +125,7 @@
   <script src="/assets/vendor/off-canvas.js"></script>
   <script src="/assets/vendor/jquery.placeholder.js"></script>
   <script src="/assets/vendor/offline/offline.min.js"></script>
+  <script src="/assets/vendor/sweetalert/sweetalert.min.js"></script>
   <?php echo $_scripts ?>
   <script src="/assets/js/main.js"></script>
 </body>
