@@ -14,7 +14,7 @@ class Migration_Create_Regnal extends CI_Migration {
 			"`grupo` int(11) NOT NULL DEFAULT '0'",
 			"`nivel` varchar(50) NOT NULL DEFAULT ''",
 			"`vigencia` date NOT NULL",
-			"`nacimiento` date DEFAULT NULL",
+			"`nacimiento` date DEFAULT NULL"
 		);
 
 		$this->dbforge->add_field($fields);
