@@ -7,7 +7,7 @@
   <title>Registro | <?php echo $title ?></title>
   <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="/assets/css/admin.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/vendor/offline/theme.css">
 
   <?php echo $_styles ?>
@@ -80,6 +80,12 @@
               <a href="/users">
                 <i class="fa fa-user"></i>
                 <span>Usuarios</span>
+              </a>
+            </li>
+            <li>
+              <a href="/campings">
+                <i class="fa fa-map-signs"></i>
+                <span>Campos</span>
               </a>
             </li>
           </ul>
