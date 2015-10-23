@@ -4,8 +4,8 @@
         <h1><?php echo $form_title ?></h1>
 
         <ol class="breadcrumb">
-          <li><a href="/users">Inicio</a></li>
-          <li>Usuarios</li>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/users">Usuarios</a></li>
           <li class="active"><?php echo $breadcrumb ?></li>
         </ol>
       </div>

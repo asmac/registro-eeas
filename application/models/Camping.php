@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Camping extends CI_Model {
+class Camping extends MY_Model {
 
 	protected $_id         = 'id';
-	protected $_table      = 'camping';
+	protected $_table      = 'campings';
 	protected $field_names = array('name', 'occupation');
 	protected $grid_fields = 'id, name, occupation';
 

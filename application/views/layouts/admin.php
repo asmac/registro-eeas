@@ -7,7 +7,7 @@
   <title>Registro | <?php echo $title ?></title>
   <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="/assets/css/admin.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/vendor/offline/theme.css">
 
   <?php echo $_styles ?>

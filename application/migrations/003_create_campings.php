@@ -7,7 +7,7 @@ class Migration_Create_Campings extends CI_Migration {
 		$attributes = array('DEFAULT CHARSET' => 'utf8');
 
 		$fields = array(
-			"`id` varchar(10) NOT NULL PRIMARY KEY",
+			"`id` int(9) NOT NULL AUTO_INCREMENT PRIMARY KEY",
 			"`name` varchar(50) NOT NULL DEFAULT ''",
 			"`occupation` int(100) NOT NULL DEFAULT 0"
 		);

@@ -9,6 +9,7 @@ class Panel extends MY_Controller {
 
 	public function index()
 	{
+		$this->template->write('title', 'Panel');
 		$this->template->render();
 	}
 
