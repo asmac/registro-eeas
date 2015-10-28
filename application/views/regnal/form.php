@@ -23,6 +23,15 @@
       <div class="panel-body">
         <form action="" method="post" class="form-horizontal">
 
+          <?php $error = form_error('data[cum]'); ?>
+          <div class="form-group<?php echo ($error != '') ? ' has-error' : ''; ?>">
+            <label for="cum" class="col-lg-2 control-label">Clave Única</label>
+            <div class="col-lg-3">
+              <input type="text" name="data[cum]" id="cum" class="form-control" value="<?php echo set_value('cum', $cum); ?>">
+            </div>
+            <?php echo $error; ?>
+          </div>
+
           <?php $error = form_error('data[nombre]'); ?>
           <div class="form-group<?php echo ($error != '') ? ' has-error' : ''; ?>">
             <label for="nombre" class="col-lg-2 control-label">Nombre</label>

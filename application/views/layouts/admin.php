@@ -72,6 +72,12 @@
               </a>
             </li>
             <li>
+              <a href="/attendees">
+                <i class="fa fa-check-circle"></i>
+                <span>Registro</span>
+              </a>
+            </li>
+            <li>
               <a href="/regnal">
                 <i class="fa fa-users"></i>
                 <span>Regnal</span>
