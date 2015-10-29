@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     },
     watch: {
       layout: {
-        files: ['*.html', 'assets/js/*.js'],
+        files: ['application/views/**/*.php', 'assets/js/*.js'],
         options: {
           livereload: true
         }
