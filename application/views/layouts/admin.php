@@ -31,7 +31,7 @@
         <a href="/" class="navbar-brand text-white">
           <i class="fa fa-stop mg-r-sm"></i>
           <span class="heading-font">
-            Panel <b>ADMIN</b>
+            <img src="/assets/img/logo.png" alt="">
           </span>
         </a>
       </div>
