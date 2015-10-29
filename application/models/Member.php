@@ -4,7 +4,7 @@ class Member extends MY_Model {
 
 	protected $_id         = 'cum';
 	protected $_table      = 'regnal';
-	protected $field_names = array('nombre', 'provincia', 'localidad', 'grupo', 'nivel', 'vigencia', 'nacimiento');
+	protected $field_names = array('cum', 'nombre', 'provincia', 'localidad', 'grupo', 'nivel', 'vigencia', 'nacimiento');
 	protected $grid_fields = 'cum, nombre, provincia, nivel, vigencia';
 
 	public function __construct()
