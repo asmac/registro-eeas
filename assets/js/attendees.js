@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
     if ($("input[value*='" + code + "']").length) {
       swal('Aviso', 'El miembro se encuentra en el listado de elementos.', 'warning');
     } else {
+      $('#verify_adult').html('<i class="fa fa-spinner fa-spin"></i>');
       $.ajax({
         url: '/attendees/validate_adult',
         type: 'POST',
@@ -21,11 +22,13 @@ jQuery(document).ready(function($) {
           swal('Error', data.message, data.status);
         } else {
           $('#adult-name').html(data.member.nombre + ' <i class="fa fa-check text-success"></i>');
-          $('#first-next').removeClass('disabled');
         }
       })
       .fail(function() {
         swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+      })
+      .always(function() {
+        $('#verify_adult').html('Verificar');
       });
     }
   };
@@ -39,6 +42,7 @@ jQuery(document).ready(function($) {
     } else if ($('#responsible').val() == code) {
       swal('Aviso', 'El miembro esta como adulto responsable.', 'warning');
     } else {
+      $('#verify_element').html('<i class="fa fa-spinner fa-spin"></i>');
       $.ajax({
         url: '/attendees/validate_element',
         type: 'POST',
@@ -57,8 +61,24 @@ jQuery(document).ready(function($) {
       })
       .fail(function() {
         swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+      })
+      .always(function() {
+        $('#verify_element').html('Verificar');
       });
     }
+  }
+
+  var load_campings = function () {
+    $.get('/campings/get', function(data) {
+      if (data.status == 'error') {
+        swal('Error', data.message, data.status);
+      } else {
+        $('.camping-grid tbody').loadTemplate($('#camp-tpl'), data.data);
+      }
+    })
+    .fail(function() {
+      swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+    });
   }
 
   $('#responsible').keydown(function(event) {
@@ -69,7 +89,6 @@ jQuery(document).ready(function($) {
       return false;
     } else {
       $('#adult-name').html('');
-      $('#first-next').addClass('disabled');
     }
   }).change(function() {
     this.value = this.value.replace(/\s/g, "");
@@ -94,16 +113,6 @@ jQuery(document).ready(function($) {
     verify_element();
   });
 
-  $('#first-next').click(function() {
-    if ($('input[name=lead]').is(':checked')) {
-      $('#wizard').wizard('next');
-    } else {
-      $('#wizard').wizard('selectedItem', {
-        step: 3
-      });
-    }
-  });
-
   $('.element-grid').on('click', '.delete-scout', function(e) {
     e.preventDefault();
     $parent = $($(this).parent().parent());
@@ -113,7 +122,9 @@ jQuery(document).ready(function($) {
       text: "Eliminar elemento",
       type: "warning",
       showCancelButton: true,
-      closeOnConfirm: true
+      cancelButtonText: 'Cancelar',
+      closeOnConfirm: true,
+      confirmButtonText: 'Eliminar'
     },
     function (confirm) {
       if (confirm) {
@@ -121,4 +132,29 @@ jQuery(document).ready(function($) {
       };
     });
   });
+
+  $('.camping-grid tbody').on('click', 'tr', function() {
+    $(this).find('input[type="radio"]').prop("checked", true);
+  });
+
+  $('#wizard').on('finished.fu.wizard', function() {
+    swal({
+      title: "Finalizar Registro",
+      text: "Confirme la acción para terminar el proceso y registrar los miembros al evento.",
+      type: "info",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      showLoaderOnConfirm: true,
+    }, function(){
+      setTimeout(function(){ swal("Ajax request finished!"); }, 2000);
+    });
+  });
+
+  $('#wizard').on('actionclicked.fu.wizard', function (evt, data) {
+    if (data.step == 2 && data.direction == 'next') {
+      load_campings();
+    };
+  });
+
+  load_campings();
 });

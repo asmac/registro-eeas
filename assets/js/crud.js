@@ -6,7 +6,9 @@ $(function(){
 				text: "Los elementos seleccionados se eliminarán de forma permanente",
 				type: "warning",
 				showCancelButton: true,
-				closeOnConfirm: true
+				cancelButtonText: 'Cancelar',
+				closeOnConfirm: true,
+				confirmButtonText: 'Confirmar'
 			},
 			function (confirm) {
 				if(confirm) {

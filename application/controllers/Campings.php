@@ -106,6 +106,24 @@ class Campings extends MY_Controller {
 		redirect('campings');
 	}
 
+	public function get()
+	{
+		$data   = $this->camping->order_by('occupation', 'asc')->get();
+		$camp   = array();
+
+		if ($data->num_rows() > 0) {
+			foreach ($data->result() as $row) {
+				$camp[] = $row;
+			}
+
+			$output = array('status' => 'success', 'message' => 'campos disponibles', 'data' => $camp);
+		} else {
+			$output = array('status' => 'error', 'message' => 'No se han creado campos');
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
 }
 
 /* End of file Campings.php */

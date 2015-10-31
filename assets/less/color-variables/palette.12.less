@@ -6,17 +6,18 @@
 @base: #492565;
 
 // Global skin color
-@palette-color: lighten(@base, 50%);
+@palette-color: @base;
 
 // Selection colors
-@selection-bg: @palette-color;
+@selection-bg: lighten(@base, 50%);
 @selection-color: #fff;
 
 //spinner Color
 @spinner-color: @brand-primary;
 
-// Link hover
-@link-hover: darken(@brand-primary, 10%);
+// Link Color
+@link-color: @base;
+@link-hover-color: darken(@base, 10%);
 
 // Header colors
 @header-bg: #fff;

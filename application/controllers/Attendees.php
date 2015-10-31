@@ -7,6 +7,7 @@ class Attendees extends MY_Controller {
 		parent::__construct();
 		$this->load->model('attendee');
 		$this->load->model('member');
+		$this->load->model('camping');
 	}
 
 	public function index()

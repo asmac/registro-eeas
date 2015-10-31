@@ -21,19 +21,20 @@
             </ul>
           </div>
           <div class="actions">
-
+            <button type="button" class="btn btn-info btn-prev">Atrás</button>
+            <button type="button" class="btn btn-info btn-next" data-last="Registrar">Siguiente</button>
           </div>
           <div class="step-content">
-            <div class="step-pane active sample-pane alert" data-step="1">
+            <div class="step-pane active alert" data-step="1">
               <h2>Registro de Adulto</h2>
 
               <div class="form-group">
-                <label for="responsible" class="col-md-2 control-label">CUM Adulto</label>
+                <label for="responsible" class="col-md-2 control-label">CUM</label>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input type="text" name="responsible" id="responsible" class="form-control" value="">
                     <span class="input-group-btn">
-                      <button id="verify_adult" type="button" class="btn btn-default">Verificar</button>
+                      <button id="verify_adult" type="button" class="btn btn-primary">Verificar</button>
                     </span>
                   </div>
                 </div>
@@ -44,22 +45,9 @@
                   <p id="adult-name" class="form-control-static"></p>
                 </div>
               </div>
-
-              <div class="form-group">
-                <label for="lead" class="col-md-2 control-label">Responsable</label>
-                <div class="col-md-4">
-                  <input type="checkbox" name="lead" value="1" class="js-switch">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-4 col-md-offset-2">
-                  <button type="button" id="first-next" class="btn btn-primary disabled">Siguiente</button>
-                </div>
-              </div>
             </div>
 
-            <div class="step-pane sample-pane" data-step="2">
+            <div class="step-pane alert" data-step="2">
               <h2>Registro de Elementos</h2>
 
               <div class="form-group">
@@ -68,7 +56,7 @@
                   <div class="input-group">
                     <input type="text" name="element" id="element" class="form-control" value="">
                     <span class="input-group-btn">
-                      <button id="verify_element" type="button" class="btn btn-default">Verificar</button>
+                      <button id="verify_element" type="button" class="btn btn-primary">Verificar</button>
                     </span>
                   </div>
                 </div>
@@ -91,28 +79,30 @@
                   </tbody>
                 </table>
               </div>
-
-              <div class="form-group">
-                <div class="col-md-4 col-md-offset-2">
-                  <button type="button" id="second-back" class="btn btn-info">Regresar</button>
-                  <button type="button" id="second-next" class="btn btn-primary disabled">Siguiente</button>
-                </div>
-              </div>
             </div>
 
-            <div class="step-pane sample-pane" data-step="3">
+            <div class="step-pane alert" data-step="3">
               <h2>Asignación de Acampado</h2>
 
-              <div class="form-group">
-                <div class="col-md-4 col-md-offset-2">
-                  <button type="button" id="third-back" class="btn btn-info">Regresar</button>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-hover camping-grid">
+                  <thead>
+                    <tr>
+                      <th width="5%">&nbsp;</th>
+                      <th class="text-center">Campo</th>
+                      <th class="text-center">Ocupación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
     </form>
+
     <script type="text/html" id="row-tpl">
       <tr>
         <td data-content-prepend="cum"><input type="hidden" name="scouts[]" data-value="cum" value=""></td>
@@ -121,5 +111,13 @@
         <td data-content="grupo" class="text-center"></td>
         <td data-content="provincia"></td>
         <td width="5%" class="text-center"><a href="#" class="btn btn-danger btn-sm delete-scout"><i class="fa fa-trash"></i></a></td>
+      </tr>
+    </script>
+
+    <script type="text/html" id="camp-tpl">
+      <tr>
+        <td><input type="radio" name="camp" data-value="id" value="">&nbsp;</td>
+        <td data-content="name"></td>
+        <td data-content="occupation" class="text-right"></td>
       </tr>
     </script>
