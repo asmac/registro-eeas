@@ -29,9 +29,9 @@
         <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
 
         <a href="/" class="navbar-brand text-white">
-          <i class="fa fa-stop mg-r-sm"></i>
+          <img src="/assets/img/scout-emblem.svg" class="logo" alt="">
           <span class="heading-font">
-            <img src="/assets/img/logo.png" alt="">
+            <b>Scouts</b> México
           </span>
         </a>
       </div>
@@ -78,9 +78,15 @@
               </a>
             </li>
             <li>
+              <a href="/attendees/change">
+                <i class="fa fa-exchange"></i>
+                <span>Cambios</span>
+              </a>
+            </li>
+            <li>
               <a href="/regnal">
                 <i class="fa fa-users"></i>
-                <span>Regnal</span>
+                <span>Membresía</span>
               </a>
             </li>
             <li>
@@ -92,7 +98,7 @@
             <li>
               <a href="/campings">
                 <i class="fa fa-map-signs"></i>
-                <span>Campos</span>
+                <span>Acampados</span>
               </a>
             </li>
           </ul>
