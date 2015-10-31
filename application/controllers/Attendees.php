@@ -82,6 +82,7 @@ class Attendees extends MY_Controller {
 		$this->form_validation->set_rules('camp', 'acampado', 'required|trim');
 
 		if ($this->form_validation->run()) {
+			$this->attendee->register($this->input->post('responsible'), $this->input->post('scouts'), $this->input->post('camp'));
 			$output = array('status' => 'success', 'message' => 'Se ha completado el proceso de registro.');
 		} else {
 			$output = array('status' => 'error', 'message' => validation_errors());

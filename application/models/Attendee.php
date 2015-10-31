@@ -12,6 +12,25 @@ class Attendee extends MY_Model {
 		parent::__construct();
 	}
 
+	public function register($responsible, $elements, $camping)
+	{
+		$this->db->set('arrive', 'NOW()', FALSE)
+				 ->set('id_camping', $camping)
+				 ->where('cum', $responsible)
+				 ->update($this->_table);
+
+		if (is_array($elements)) {
+			$this->db->set('arrive', 'NOW()', FALSE)
+					 ->set('id_camping', $camping)
+					 ->set('responsible', $responsible)
+					 ->where_in('cum', $elements)
+					 ->update($this->_table);
+		}
+
+		$num = $this->db->where('id_camping', $camping)->count_all_results('attendees');
+		$this->db->set('occupation', $num)->where('id', $camping)->update('campings');
+	}
+
 }
 
 /* End of file Attendee.php */
