@@ -40,7 +40,7 @@ class Attendees extends MY_Controller {
 		}
 
 		$this->form_validation->set_error_delimiters('', '');
-		$this->form_validation->set_rules('cum', 'cum', 'required|trim|registered|paid|legal_age');
+		$this->form_validation->set_rules('cum', 'cum', 'required|trim|registered|paid|legal_age|already_in');
 
 		if ($this->form_validation->run()) {
 			$member = $this->member->where('cum', $this->input->post('cum'))->limit(1)->get()->row_array();
@@ -59,13 +59,32 @@ class Attendees extends MY_Controller {
 		}
 
 		$this->form_validation->set_error_delimiters('', '');
-		$this->form_validation->set_rules('cum', 'cum', 'required|trim|registered|paid');
+		$this->form_validation->set_rules('cum', 'cum', 'required|trim|registered|paid|already_in');
 
 		if ($this->form_validation->run()) {
 			$member = $this->member->where('cum', $this->input->post('cum'))->limit(1)->get()->row_array();
 			$output = array('status' => 'success', 'message' => 'Miembro validado', 'cum' => $this->input->post('cum'), 'member' => $member);
 		} else {
 			$output = array('status' => 'error', 'message' => form_error('cum'));
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	public function register()
+	{
+		if (!$this->input->is_ajax_request()) {
+			redirect('/');
+		}
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('responsible', 'responsable', 'required|trim|registered|paid|legal_age|already_in');
+		$this->form_validation->set_rules('camp', 'acampado', 'required|trim');
+
+		if ($this->form_validation->run()) {
+			$output = array('status' => 'success', 'message' => 'Se ha completado el proceso de registro.');
+		} else {
+			$output = array('status' => 'error', 'message' => validation_errors());
 		}
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));

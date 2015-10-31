@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-  var code;
+  var code, elements, elements_text;
   var verify_adult = function () {
     code = $('#responsible').val();
     code = code.replace(/\s/g, "");
@@ -138,16 +138,47 @@ jQuery(document).ready(function($) {
   });
 
   $('#wizard').on('finished.fu.wizard', function() {
-    swal({
-      title: "Finalizar Registro",
-      text: "Confirme la acción para terminar el proceso y registrar los miembros al evento.",
-      type: "info",
-      showCancelButton: true,
-      closeOnConfirm: false,
-      showLoaderOnConfirm: true,
-    }, function(){
-      setTimeout(function(){ swal("Ajax request finished!"); }, 2000);
-    });
+
+    elements = $("input[name*='scouts']").length;
+
+    if ($('#responsible').val() == '' || $('input[name="camp"]:checked').length == 0) {
+      swal('Registro Inválido', 'Se requiere al menos un adulto y asignar un campo para poder continuar.', 'warning');
+    } else {
+
+      if (elements > 0) {
+        elements_text = ' y ' + elements + ' elementos a su cargo.';
+      } else {
+        elements_text = '.';
+      }
+
+      swal({
+        title: "Finalizar",
+        text: "Confirme terminar el proceso de registro de 1 adulto" + elements_text,
+        type: "info",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+      }, function() {
+        $.post('/attendees/register', $("#form_attendees").serialize(), function(data, textStatus, xhr) {
+          if (data.status == 'error') {
+            swal('Error', data.message, data.status);
+          } else {
+            swal({
+              title: 'Registro Finalizado',
+              text: data.message,
+              type: 'success',
+            }, function() {
+              swal.close();
+              window.location.replace('/attendees');
+            });
+          }
+        }, 'json')
+        .fail(function() {
+          swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+        });
+      });
+    };
   });
 
   $('#wizard').on('actionclicked.fu.wizard', function (evt, data) {
@@ -155,6 +186,4 @@ jQuery(document).ready(function($) {
       load_campings();
     };
   });
-
-  load_campings();
 });

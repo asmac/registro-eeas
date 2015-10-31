@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <form action="" method="post" class="form-horizontal">
+    <form id="form_attendees" action="" method="post" class="form-horizontal">
       <div class="fuelux">
         <div id="wizard" data-initialize="wizard" class="wizard">
           <div class="steps-container">
@@ -22,7 +22,7 @@
           </div>
           <div class="actions">
             <button type="button" class="btn btn-info btn-prev">Atrás</button>
-            <button type="button" class="btn btn-info btn-next" data-last="Registrar">Siguiente</button>
+            <button type="button" class="btn btn-info btn-next" data-last="Finalizar">Siguiente</button>
           </div>
           <div class="step-content">
             <div class="step-pane active alert" data-step="1">
