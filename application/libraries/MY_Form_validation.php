@@ -41,6 +41,17 @@ class MY_Form_validation extends CI_Form_validation {
 		return ($row->age >= 18) ? TRUE:FALSE;
 	}
 
+	public function already_in($str)
+	{
+		$ci  =& get_instance();
+		$row = $ci->db->where('cum', $str)
+						->where('id_camping', 0)
+						->limit(1)
+						->count_all_results('attendees');
+
+		return ($row == 1) ? TRUE:FALSE;
+	}
+
 }
 
 /* End of file MY_Form_validation.php */

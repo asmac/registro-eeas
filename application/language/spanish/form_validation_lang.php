@@ -46,3 +46,4 @@ $lang['form_validation_mysql_date']            = 'El campo {field} no tiene form
 $lang['form_validation_registered']            = 'El miembro no se encuentra vigente.';
 $lang['form_validation_paid']                  = 'El miembro no tiene pago del evento.';
 $lang['form_validation_legal_age']             = 'El miembro es menor de edad.';
+$lang['form_validation_already_in']            = 'El miembro ya se encuentra en el evento.';
