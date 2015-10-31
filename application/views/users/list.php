@@ -1,11 +1,11 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h1>Administradores</h1>
+    <h1>Usuarios</h1>
 
     <ol class="breadcrumb">
       <li><a href="/">Inicio</a></li>
-      <li class="active">Administradores</li>
+      <li class="active">Usuarios</li>
     </ol>
   </div>
 </div>
