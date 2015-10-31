@@ -12,7 +12,7 @@ class MY_Form_validation extends CI_Form_validation {
 	{
 		$ci =& get_instance();
 		$results = $ci->db->where('cum', $str)
-						->where('vigencia >= CURRENT_DATE')
+						->where('vigencia >= CURRENT_DATE', '', FALSE)
 						->limit(1)
 						->count_all_results('regnal');
 
