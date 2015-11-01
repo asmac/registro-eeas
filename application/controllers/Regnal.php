@@ -108,7 +108,7 @@ class Regnal extends MY_Controller {
 		$data['form_title'] = 'Editar Miembro';
 		$data['breadcrumb'] = 'Editar';
 
-		$this->template->write_view('content', 'users/form', $data);
+		$this->template->write_view('content', 'regnal/form', $data);
 		$this->template->write('title', 'Editar Miembro');
 		$this->template->render();
 	}
