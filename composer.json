@@ -3,7 +3,6 @@
 		"php": ">=5.4.0"
 	},
 	"require-dev": {
-		"filp/whoops": "^1.1",
-		"kenjis/ci-phpunit-test": "^0.8.1"
+		"filp/whoops": "^1.1"
 	}
 }
