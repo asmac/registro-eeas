@@ -23,11 +23,19 @@ class Attendees extends MY_Controller {
 		$this->template->render();
 	}
 
-	public function change()
+	public function switch_payment()
 	{
+		$this->form_validation->set_rules('paid', 'cum pagado', 'required|trim|paid|already_in');
+		$this->form_validation->set_rules('switch', 'cum cambio', 'required|trim|registered');
+
+		if ($this->form_validation->run()) {
+			$this->attendee->payment_change($this->input->post('paid'), $this->input->post('switch'));
+			$this->session->set_flashdata('msg_success', "El pago del miembro {$this->input->post('paid')} ha sido cambiado por el miembro {$this->input->post('switch')}.");
+			redirect('attendees/switch-payment');
+		}
+
 		$this->template->write('title', 'Cambio de Pago');
 		$this->template->write_view('content', 'attendees/change');
-		$this->template->add_css('assets/vendor/fuelux/css/fuelux.min.css');
 		$this->template->add_js('assets/vendor/fuelux/js/fuelux.min.js');
 		$this->template->asset_js('attendees.js');
 		$this->template->render();

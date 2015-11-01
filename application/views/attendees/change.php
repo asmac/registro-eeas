@@ -11,34 +11,52 @@
       </div>
     </div>
 
-    <section class="fuelux">
-
-      <div class="wizard" data-initialize="wizard" id="myWizard">
-        <div class="steps-container">
-          <ul class="steps">
-            <li data-step="1" data-name="campaign" class="active"><span class="badge">1</span>Campaign<span class="chevron"></span></li>
-            <li data-step="2"><span class="badge">2</span>Recipients<span class="chevron"></span></li>
-            <li data-step="3" data-name="template"><span class="badge">3</span>Template<span class="chevron"></span></li>
-          </ul>
-        </div>
-        <div class="actions">
-          <button type="button" class="btn btn-default btn-prev"><span class="fa fa-arrow-left"></span>Prev</button>
-          <button type="button" class="btn btn-default btn-next" data-last="Complete">Next<span class="fa fa-arrow-right"></span></button>
-        </div>
-        <div class="step-content">
-          <div class="step-pane active sample-pane alert" data-step="1">
-            <h4>Setup Campaign</h4>
-            <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Beetroot water spinach okra water chestnut ricebean pea catsear courgette.</p>
-          </div>
-          <div class="step-pane sample-pane bg-info alert" data-step="2">
-            <h4>Choose Recipients</h4>
-            <p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard. </p>
-          </div>
-          <div class="step-pane sample-pane bg-danger alert" data-step="3">
-            <h4>Design Template</h4>
-            <p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jÃ­cama salsify. </p>
-          </div>
-        </div>
+    <?php if (validation_errors() != ''): ?>
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>Error</h4>
+        La información está incompleta o errónea.
       </div>
+    <?php endif ?>
 
+    <?php if ($this->session->flashdata('msg_success')): ?>
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>Cambio Realizado</h4>
+        <?php echo $this->session->flashdata('msg_success'); ?>
+      </div>
+    <?php endif ?>
+
+    <section class="panel">
+      <div class="panel-heading">
+        Proporcione el CUM original del pago y el CUM de la persona que ocupará el lugar.
+      </div>
+      <div class="panel-body">
+        <form action="" method="post" class="form-horizontal bordered-group" role="form">
+          <?php $error = form_error('paid'); ?>
+          <div class="form-group<?php echo ($error != '') ? ' has-error' : ''; ?>">
+            <label for="paid" class="col-md-2 control-label">CUM Pagado</label>
+            <div class="col-md-4">
+              <input type="text" name="paid" id="paid" class="form-control" value="<?php echo set_value('paid'); ?>">
+            </div>
+            <?php echo $error; ?>
+          </div>
+
+          <?php $error = form_error('switch'); ?>
+          <div class="form-group<?php echo ($error != '') ? ' has-error' : ''; ?>">
+            <label for="switch" class="col-md-2 control-label">CUM Cambio</label>
+            <div class="col-md-4">
+              <input type="text" name="switch" id="switch" class="form-control" value="<?php echo set_value('switch'); ?>">
+            </div>
+            <?php echo $error; ?>
+          </div>
+
+          <div class="col-md-4 col-md-offset-2 btn-crud">
+            <button type="submit" class="btn btn-success">Realizar Cambio</button>
+            <a href="/attendees" class="btn btn-default">Registro</a>
+          </div>
+        </form>
+      </div>
     </section>
+
+

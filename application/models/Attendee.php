@@ -31,6 +31,14 @@ class Attendee extends MY_Model {
 		$this->db->set('occupation', $num)->where('id', $camping)->update('campings');
 	}
 
+	public function payment_change($original, $new)
+	{
+		$this->db->set('cum', $new)
+				 ->set('switch', $original)
+				 ->where('cum', $original)
+				 ->update($this->_table);
+	}
+
 }
 
 /* End of file Attendee.php */

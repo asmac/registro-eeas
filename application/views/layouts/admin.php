@@ -78,7 +78,7 @@
               </a>
             </li>
             <li>
-              <a href="/attendees/change">
+              <a href="/attendees/switch-payment">
                 <i class="fa fa-exchange"></i>
                 <span>Cambios</span>
               </a>
