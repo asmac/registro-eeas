@@ -12,28 +12,31 @@
     </div>
 
     <?php if (validation_errors() != ''): ?>
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4>Error</h4>
         La información está incompleta o errónea.
       </div>
     <?php endif ?>
 
     <section class="panel">
+      <div class="panel-heading">
+        Proporcione el nombre del campo, procure que sea único para ser fácilmente identificable.
+      </div>
       <div class="panel-body">
-        <form action="" method="post" class="form-horizontal">
+        <form action="" method="post" class="form-horizontal bordered-group">
 
           <?php $error = form_error('data[name]'); ?>
           <div class="form-group<?php echo ($error != '') ? ' has-error' : ''; ?>">
-            <label for="name" class="col-lg-2 control-label">Nombre</label>
-            <div class="col-lg-3">
+            <label for="name" class="col-md-2 control-label">Nombre</label>
+            <div class="col-md-4">
               <input type="text" name="data[name]" id="name" class="form-control" value="<?php echo set_value('name', $name); ?>">
             </div>
             <?php echo $error; ?>
           </div>
 
           <div class="form-group">
-            <div class="col-lg-3 col-sm-offset-2 btn-crud">
+            <div class="col-md-3 col-md-offset-2 btn-crud">
               <button type="submit" class="btn btn-success">Guardar</button>
               <a href="/campings" class="btn btn-default">Regresar</a>
             </div>
