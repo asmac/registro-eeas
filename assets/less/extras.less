@@ -90,13 +90,22 @@
 }
 
 .form-horizontal.bordered-group {
+
     .form-group {
         border-bottom: 1px solid #E7EBF3;
         padding-bottom: 15px;
     }
+
     .form-group:last-child {
         border-bottom: 1px solid transparent;
         padding: 0;
+    }
+
+    .help-block {
+      @media (max-width: @screen-sm-max) {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
     }
 }
 
