@@ -18,6 +18,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <script src="/assets/vendor/modernizr.js"></script>
 </head>
 
@@ -81,6 +82,12 @@
               <a href="/attendees/switch-payment">
                 <i class="fa fa-exchange"></i>
                 <span>Cambios</span>
+              </a>
+            </li>
+            <li>
+              <a href="/attendees/search">
+                <i class="fa fa-search"></i>
+                <span>Búsqueda</span>
               </a>
             </li>
             <li>
