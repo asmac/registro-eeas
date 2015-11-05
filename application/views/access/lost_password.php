@@ -3,8 +3,8 @@
       <div class="panel-login">
 
         <?php if (validation_errors()): ?>
-          <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+          <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
             <?php echo validation_errors(); ?>
           </div>
         <?php endif ?>
@@ -17,8 +17,8 @@
         <?php endif ?>
 
         <?php if ($this->session->flashdata('sucess') === TRUE): ?>
-          <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
             Los nuevos accesos le han sido enviado a su correo. No olvide verificar su carpeta de SPAM.
           </div>
         <?php endif ?>
