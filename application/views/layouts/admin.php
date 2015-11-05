@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-  <title>Registro | <?php echo $title ?></title>
+  <title>Eventos Nacionales | <?php echo $title ?></title>
   <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="/assets/css/admin.css">
   <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">

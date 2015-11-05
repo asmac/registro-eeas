@@ -100,7 +100,7 @@
 
           <div class="form-group">
             <div class="col-md-4 col-md-offset-2 btn-crud">
-              <button type="submit" class="btn btn-success">Guardar</button>
+              <button type="submit" class="btn btn-scout">Guardar</button>
               <a href="/regnal" class="btn btn-default">Regresar</a>
             </div>
           </div>

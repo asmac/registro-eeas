@@ -52,7 +52,7 @@
           </div>
 
           <div class="col-md-4 col-md-offset-2 btn-crud">
-            <button type="submit" class="btn btn-success">Realizar Cambio</button>
+            <button type="submit" class="btn btn-scout">Realizar Cambio</button>
             <a href="/attendees" class="btn btn-default">Registro</a>
           </div>
         </form>

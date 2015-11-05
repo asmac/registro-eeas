@@ -21,8 +21,8 @@
             </ul>
           </div>
           <div class="actions">
-            <button type="button" class="btn btn-info btn-prev">Atrás</button>
-            <button type="button" class="btn btn-info btn-next" data-last="Finalizar">Siguiente</button>
+            <button type="button" class="btn btn-default btn-prev">Atrás</button>
+            <button type="button" class="btn btn-default btn-next" data-last="Finalizar">Siguiente</button>
           </div>
           <div class="step-content">
             <div class="step-pane active alert" data-step="1">
@@ -34,7 +34,7 @@
                   <div class="input-group">
                     <input type="text" name="responsible" id="responsible" class="form-control" value="">
                     <span class="input-group-btn">
-                      <button id="verify_adult" type="button" class="btn btn-primary">Verificar</button>
+                      <button id="verify_adult" type="button" class="btn btn-scout">Verificar</button>
                     </span>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
                   <div class="input-group">
                     <input type="text" name="element" id="element" class="form-control" value="">
                     <span class="input-group-btn">
-                      <button id="verify_element" type="button" class="btn btn-primary">Verificar</button>
+                      <button id="verify_element" type="button" class="btn btn-scout">Verificar</button>
                     </span>
                   </div>
                 </div>
