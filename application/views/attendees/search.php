@@ -5,7 +5,6 @@
 
         <ol class="breadcrumb">
           <li><a href="/">Inicio</a></li>
-          <li><a href="/attendees">Registro</a></li>
           <li class="active">Búsqueda</li>
         </ol>
       </div>

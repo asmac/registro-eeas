@@ -70,6 +70,12 @@ class Attendee extends MY_Model {
 		return FALSE;
 	}
 
+	public function change_camping($cum, $camping)
+	{
+		$this->db->set('id_camping', $camping)->where('cum', $cum)->or_where('responsible', $cum)->update($this->_table);
+		return $this->db->affected_rows();
+	}
+
 }
 
 /* End of file Attendee.php */

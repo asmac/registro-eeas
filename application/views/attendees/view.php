@@ -5,11 +5,18 @@
 
         <ol class="breadcrumb">
           <li><a href="/">Inicio</a></li>
-          <li><a href="/attendees">Registro</a></li>
+          <li><a href="/attendees/search">Búsqueda</a></li>
           <li class="active">Ficha</li>
         </ol>
       </div>
     </div>
+
+    <?php if (!empty($msg_success)): ?>
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?php echo $msg_success; ?>
+      </div>
+    <?php endif ?>
 
     <div class="row">
       <div class="col-md-6">
@@ -30,9 +37,15 @@
                   <th>Provincia</th>
                   <td><?php echo $adult->provincia ?></td>
                 </tr>
+
+                <?php if ($elements->num_rows() > 0): ?>
                 <tr>
-                  <td colspan="2" class="text-center"><button type="button" class="btn btn-default">Cambiar Adulto</button></td>
+                  <td colspan="2" class="text-center">
+                    <button type="button" class="btn btn-default">Cambiar Adulto</button>
+                  </td>
                 </tr>
+                <?php endif ?>
+
               </tbody>
             </table>
           </div>
@@ -58,7 +71,9 @@
                   <td><?php echo $adult->provincia ?></td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-center"><button type="button" class="btn btn-primary">Cambiar Acampado</button></td>
+                  <td colspan="2" class="text-center">
+                    <a href="/attendees/change-camping/<?php echo $adult->cum ?>" class="btn btn-primary">Cambiar Acampado</a>
+                  </td>
                 </tr>
               </tbody>
             </table>

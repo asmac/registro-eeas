@@ -143,6 +143,32 @@ class Attendees extends MY_Controller {
 		$this->template->render();
 	}
 
+	public function change_camping($cum = '')
+	{
+		if (!$this->attendee->is_registered($cum)) {
+			redirect('attendees/search');
+		}
+
+		$this->form_validation->set_rules('camp', 'acampado', 'required|trim');
+
+		if ($this->form_validation->run()) {
+			$this->attendee->change_camping($cum, $this->input->post('camp', TRUE));
+			$this->camping->update_occupation();
+			$this->session->set_flashdata('msg_success', "Se ha cambiado el area de acampado asignado.");
+			redirect('attendees/view/' . $cum);
+		}
+
+		$data = array(
+			'cum' => $cum,
+			'campings' => $this->camping->get()
+		);
+
+		$this->template->write('title', 'Cambiar Acampado');
+		$this->template->write_view('content', 'attendees/change_camping', $data);
+		$this->template->asset_js('attendees.js');
+		$this->template->render();
+	}
+
 }
 
 /* End of file Attendees.php */
