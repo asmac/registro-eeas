@@ -12,6 +12,12 @@ class Camping extends MY_Model {
 		parent::__construct();
 	}
 
+	public function update_occupation()
+	{
+		$this->db->simple_query('UPDATE campings SET occupation = (SELECT COUNT(cum) FROM attendees WHERE attendees.id_camping = campings.id)');
+		return $this->db->affected_rows();
+	}
+
 }
 
 /* End of file Camping.php */

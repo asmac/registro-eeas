@@ -34,8 +34,7 @@ class Attendee extends MY_Model {
 					 ->update($this->_table);
 		}
 
-		$num = $this->db->where('id_camping', $camping)->count_all_results('attendees');
-		$this->db->set('occupation', $num)->where('id', $camping)->update('campings');
+		$this->db->simple_query("UPDATE campings SET occupation = (SELECT COUNT(cum) FROM attendees WHERE attendees.id_camping = campings.id) WHERE id = {$camping}");
 	}
 
 	public function payment_change($original, $new)
