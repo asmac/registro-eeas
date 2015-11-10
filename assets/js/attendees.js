@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
         $('#verify_element').html('Verificar');
       });
     }
-  }
+  };
 
   var load_campings = function () {
     $.get('/campings/get', function(data) {
@@ -79,7 +79,20 @@ jQuery(document).ready(function($) {
     .fail(function() {
       swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
     });
-  }
+  };
+
+  var find_attendee = function () {
+    $.post('/attendees/validate_attendee', { cum: $('#cum_search').val() }, function(data, textStatus, xhr) {
+      if (data.status == 'success') {
+        window.location.replace('/attendees/view/' + data.cum);
+      } else{
+        swal('Error', data.message, data.status);
+      };
+    })
+    .fail(function() {
+      swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+    });
+  };
 
   $('#responsible').keydown(function(event) {
     if (event.which === 13) {
@@ -137,53 +150,67 @@ jQuery(document).ready(function($) {
     $(this).find('input[type="radio"]').prop("checked", true);
   });
 
-  $('#wizard').on('finished.fu.wizard', function() {
+  if ($('#wizard').length) {
+    $('#wizard').on('finished.fu.wizard', function() {
+      elements = $("input[name*='scouts']").length;
 
-    elements = $("input[name*='scouts']").length;
-
-    if ($('#responsible').val() == '' || $('input[name="camp"]:checked').length == 0) {
-      swal('Registro Inválido', 'Se requiere al menos un adulto y asignar un campo para poder continuar.', 'warning');
-    } else {
-
-      if (elements > 0) {
-        elements_text = ' y ' + elements + ' elementos a su cargo.';
+      if ($('#responsible').val() == '' || $('input[name="camp"]:checked').length == 0) {
+        swal('Registro Inválido', 'Se requiere al menos un adulto y asignar un campo para poder continuar.', 'warning');
       } else {
-        elements_text = '.';
-      }
 
-      swal({
-        title: "Finalizar",
-        text: "Confirme terminar el proceso de registro de 1 adulto" + elements_text,
-        type: "info",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        cancelButtonText: 'Cancelar',
-        showLoaderOnConfirm: true,
-      }, function() {
-        $.post('/attendees/register', $("#form_attendees").serialize(), function(data, textStatus, xhr) {
-          if (data.status == 'error') {
-            swal('Error', data.message, data.status);
-          } else {
-            swal({
-              title: 'Registro Finalizado',
-              text: data.message,
-              type: 'success',
-            }, function() {
-              swal.close();
-              window.location.replace('/attendees');
-            });
-          }
-        }, 'json')
-        .fail(function() {
-          swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+        if (elements > 0) {
+          elements_text = ' y ' + elements + ' elementos a su cargo.';
+        } else {
+          elements_text = '.';
+        }
+
+        swal({
+          title: "Finalizar",
+          text: "Confirme terminar el proceso de registro de 1 adulto" + elements_text,
+          type: "info",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          cancelButtonText: 'Cancelar',
+          showLoaderOnConfirm: true,
+        }, function() {
+          $.post('/attendees/register', $("#form_attendees").serialize(), function(data, textStatus, xhr) {
+            if (data.status == 'error') {
+              swal('Error', data.message, data.status);
+            } else {
+              swal({
+                title: 'Registro Finalizado',
+                text: data.message,
+                type: 'success',
+              }, function() {
+                swal.close();
+                window.location.replace('/attendees');
+              });
+            }
+          }, 'json')
+          .fail(function() {
+            swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+          });
         });
-      });
-    };
+      };
+    });
+
+    $('#wizard').on('actionclicked.fu.wizard', function (evt, data) {
+      if (data.step == 2 && data.direction == 'next') {
+        load_campings();
+      };
+    });
+  };
+
+  $('#cum_search').keydown(function(event) {
+    if (event.which === 13) {
+      event.preventDefault();
+      find_attendee();
+    } else if (event.which === 32) {
+      return false;
+    }
   });
 
-  $('#wizard').on('actionclicked.fu.wizard', function (evt, data) {
-    if (data.step == 2 && data.direction == 'next') {
-      load_campings();
-    };
+  $('#btn_search').click(function() {
+    find_attendee();
   });
 });

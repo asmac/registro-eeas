@@ -36,7 +36,7 @@
       </div>
 
       <div class="col-sm-6 col-btn-add">
-        <a href="/regnal/add" class="btn btn-scout">
+        <a href="/regnal/add" class="btn btn-primary">
           Agregar Nuevo
         </a>
       </div>

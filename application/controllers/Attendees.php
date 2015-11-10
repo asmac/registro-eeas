@@ -36,8 +36,6 @@ class Attendees extends MY_Controller {
 
 		$this->template->write('title', 'Cambio de Pago');
 		$this->template->write_view('content', 'attendees/change');
-		$this->template->add_js('assets/vendor/fuelux/js/fuelux.min.js');
-		$this->template->asset_js('attendees.js');
 		$this->template->render();
 	}
 
@@ -79,6 +77,28 @@ class Attendees extends MY_Controller {
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 
+	public function validate_attendee()
+	{
+		if (!$this->input->is_ajax_request()) {
+			redirect('/');
+		}
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('cum', 'cum', 'required|trim|paid');
+		if ($this->form_validation->run()) {
+			$cum = $this->attendee->find_registered($this->input->post('cum'));
+			if ($cum !== FALSE) {
+				$output = array('status' => 'success', 'message' => 'Miembro encontrado', 'cum' => $cum);
+			} else {
+				$output = array('status' => 'error', 'message' => 'El miembro no ha llegado al evento');
+			}
+		} else {
+			$output = array('status' => 'error', 'message' => form_error('cum'));
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
 	public function register()
 	{
 		if (!$this->input->is_ajax_request()) {
@@ -97,6 +117,30 @@ class Attendees extends MY_Controller {
 		}
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
+	public function search()
+	{
+		$this->template->write('title', 'Búsqueda');
+		$this->template->write_view('content', 'attendees/search');
+		$this->template->asset_js('attendees.js');
+		$this->template->render();
+	}
+
+	public function view($cum = '')
+	{
+		if (!$this->attendee->is_registered($cum)) {
+			redirect('attendees/search');
+		}
+
+		$data = array(
+			'adult' => $this->attendee->get($cum)->row(),
+			'elements' => $this->attendee->where('responsible', $cum)->get()
+		);
+
+		$this->template->write('title', 'Participante');
+		$this->template->write_view('content', 'attendees/view', $data);
+		$this->template->render();
 	}
 
 }

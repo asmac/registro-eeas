@@ -34,7 +34,7 @@
                   <div class="input-group">
                     <input type="text" name="responsible" id="responsible" class="form-control" value="">
                     <span class="input-group-btn">
-                      <button id="verify_adult" type="button" class="btn btn-scout">Verificar</button>
+                      <button id="verify_adult" type="button" class="btn btn-primary">Verificar</button>
                     </span>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
                   <div class="input-group">
                     <input type="text" name="element" id="element" class="form-control" value="">
                     <span class="input-group-btn">
-                      <button id="verify_element" type="button" class="btn btn-scout">Verificar</button>
+                      <button id="verify_element" type="button" class="btn btn-primary">Verificar</button>
                     </span>
                   </div>
                 </div>

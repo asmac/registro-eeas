@@ -23,7 +23,7 @@ class MY_Controller extends CI_Controller {
 		}
 
 		if ( $is_public && $this->user_auth->is_logged() ) {
-			redirect('admin');
+			redirect('');
 		}
 
 		if ( $this->user_auth->is_blocked() && !$allow_blocked ) {

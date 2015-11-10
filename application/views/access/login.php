@@ -14,7 +14,7 @@
           </div>
         <?php endif ?>
 
-        <section class="panel panel-scout">
+        <section class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title text-center"><img src="/assets/img/scout-emblem.svg" width="18px" alt=""> Scouts México</h3>
           </div>

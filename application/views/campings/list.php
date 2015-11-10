@@ -11,7 +11,7 @@
 </div>
 
 <?php if (!empty($msg_success)): ?>
-  <div class="alert alert-succes alert-dismissable">
+  <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <?php echo $msg_success; ?>
   </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="col-sm-6 col-btn-add">
-        <a href="/campings/add" class="btn btn-scout">
+        <a href="/campings/add" class="btn btn-primary">
           Agregar Nuevo
         </a>
       </div>
