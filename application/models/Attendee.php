@@ -76,6 +76,12 @@ class Attendee extends MY_Model {
 		return $this->db->affected_rows();
 	}
 
+	public function has_elements($cum)
+	{
+		$count = $this->db->where('responsible', $cum)->count_all_results($this->_table);
+		return ($count > 0) ? TRUE:FALSE;
+	}
+
 }
 
 /* End of file Attendee.php */

@@ -169,6 +169,15 @@ class Attendees extends MY_Controller {
 		$this->template->render();
 	}
 
+	public function change_responsible($cum)
+	{
+		if (!$this->attendee->has_elements($cum)) {
+			redirect('attendees/search');
+		}
+
+		$this->template->render();
+	}
+
 }
 
 /* End of file Attendees.php */
