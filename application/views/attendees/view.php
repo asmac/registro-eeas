@@ -11,10 +11,10 @@
       </div>
     </div>
 
-    <?php if (!empty($msg_success)): ?>
+    <?php if ($this->session->flashdata('msg_success')): ?>
       <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <?php echo $msg_success; ?>
+        <?php echo $this->session->flashdata('msg_success'); ?>
       </div>
     <?php endif ?>
 
@@ -37,15 +37,13 @@
                   <th>Provincia</th>
                   <td><?php echo $adult->provincia ?></td>
                 </tr>
-
-                <?php if ($elements->num_rows() > 0): ?>
                 <tr>
                   <td colspan="2" class="text-center">
-                    <button type="button" class="btn btn-default">Cambiar Adulto</button>
+                    <?php if ($elements->num_rows() > 0): ?>
+                    <a href="/attendees/change-responsible/<?php echo $adult->cum ?>" class="btn btn-default">Cambiar Adulto</a>
+                    <?php endif ?>
                   </td>
                 </tr>
-                <?php endif ?>
-
               </tbody>
             </table>
           </div>

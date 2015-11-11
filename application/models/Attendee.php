@@ -13,10 +13,13 @@ class Attendee extends MY_Model {
 		parent::__construct();
 	}
 
-	protected function relations()
+	protected function relations($id = '')
 	{
+		$this->db->select('arrive, switch, responsible, campings.name, regnal.*');
 		$this->db->join('campings', 'campings.id = attendees.id_camping', 'left');
 		$this->db->join('regnal', 'regnal.cum = attendees.cum', 'left');
+		$this->_id = 'attendees.cum';
+		return $id;
 	}
 
 	public function register($responsible, $elements, $camping)
@@ -74,6 +77,24 @@ class Attendee extends MY_Model {
 	{
 		$this->db->set('id_camping', $camping)->where('cum', $cum)->or_where('responsible', $cum)->update($this->_table);
 		return $this->db->affected_rows();
+	}
+
+	public function change_responsible($old, $new)
+	{
+		$data = $this->db->where('cum', $old)->get($this->_table, 1)->row();
+		$this->db->set('id_camping', $data->id_camping)
+				 ->set('arrive', 'NOW()', FALSE)
+				 ->where('cum', $new)
+				 ->update($this->_table);
+
+		$this->db->set('responsible', $new)
+				 ->where('responsible', $old)
+				 ->update($this->_table);
+
+		$this->db->set('id_camping', '0')
+				 ->set('arrive', NULL)
+				 ->where('cum', $old)
+				 ->update($this->_table);
 	}
 
 	public function has_elements($cum)

@@ -45,9 +45,9 @@ class MY_Form_validation extends CI_Form_validation {
 	{
 		$ci  =& get_instance();
 		$row = $ci->db->where('cum', $str)
-						->where('id_camping', 0)
-						->limit(1)
-						->count_all_results('attendees');
+					  ->where('id_camping', 0)
+					  ->limit(1)
+					  ->count_all_results('attendees');
 
 		return ($row == 1) ? TRUE:FALSE;
 	}

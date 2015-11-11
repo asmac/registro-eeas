@@ -134,8 +134,8 @@ class Attendees extends MY_Controller {
 		}
 
 		$data = array(
-			'adult' => $this->attendee->get($cum)->row(),
-			'elements' => $this->attendee->where('responsible', $cum)->get()
+			'adult'       => $this->attendee->get($cum)->row(),
+			'elements'    => $this->attendee->where('responsible', $cum)->get()
 		);
 
 		$this->template->write('title', 'Participante');
@@ -175,6 +175,17 @@ class Attendees extends MY_Controller {
 			redirect('attendees/search');
 		}
 
+		$this->form_validation->set_rules('cum', 'cum', 'required|trim|registered|paid|legal_age|already_in');
+
+		if ($this->form_validation->run()) {
+			$this->attendee->change_responsible($cum, $this->input->post('cum', TRUE));
+			$this->session->set_flashdata('msg_success', "El adulto responsable ha sido cambiado.");
+			redirect('attendees/view/' . $this->input->post('cum', TRUE));
+		}
+
+		$data = array('cum' => $cum);
+		$this->template->write('title', 'Cambiar Adulto');
+		$this->template->write_view('content', 'attendees/change_responsible', $data);
 		$this->template->render();
 	}
 
