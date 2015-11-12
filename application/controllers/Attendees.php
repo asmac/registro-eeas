@@ -189,6 +189,22 @@ class Attendees extends MY_Controller {
 		$this->template->render();
 	}
 
+	public function elements($cum = '')
+	{
+		if (!$this->attendee->is_registered($cum)) {
+			redirect('attendees/search');
+		}
+
+		$data = array(
+			'cum' => $cum,
+			'elements' => $this->attendee->where('responsible', $cum)->get()
+		);
+
+		$this->template->write('title', 'Elementos');
+		$this->template->write_view('content', 'attendees/elements', $data);
+		$this->template->render();
+	}
+
 }
 
 /* End of file Attendees.php */

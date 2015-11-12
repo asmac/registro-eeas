@@ -92,8 +92,16 @@
                 <th>Nivel</th>
                 <th>Provincia</th>
                 <th>Grupo</th>
+                <th>Registro</th>
               </tr>
             </thead>
+            <tfoot>
+              <tr>
+                <td colspan="6" class="text-center">
+                  <a href="/attendees/elements/<?php echo $adult->cum ?>" class="btn btn-default">Agregar / Modificar</a>
+                </td>
+              </tr>
+            </tfoot>
             <tbody>
               <?php foreach ($elements->result() as $scout): ?>
                 <tr>
@@ -102,8 +110,16 @@
                   <td><?php echo $scout->nivel ?></td>
                   <td><?php echo $scout->provincia ?></td>
                   <td><?php echo $scout->grupo ?></td>
+                  <td><?php echo $scout->arrive ?></td>
                 </tr>
               <?php endforeach ?>
+
+              <?php if ($elements->num_rows() == 0): ?>
+              <tr>
+                <td colspan="6" class="text-center">No tiene elementos a su cargo</td>
+              </tr>
+              <?php endif ?>
+
             </tbody>
           </table>
         </div>
