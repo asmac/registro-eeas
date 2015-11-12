@@ -41,6 +41,8 @@
                   <td colspan="2" class="text-center">
                     <?php if ($elements->num_rows() > 0): ?>
                     <a href="/attendees/change-responsible/<?php echo $adult->cum ?>" class="btn btn-default">Cambiar Adulto</a>
+                    <?php else: ?>
+                    <button id="revert_attendee" data-cum="<?php echo $adult->cum ?>" type="button" class="btn btn-danger">Revertir Registro</button>
                     <?php endif ?>
                   </td>
                 </tr>

@@ -281,4 +281,23 @@ jQuery(document).ready(function($) {
       };
     });
   });
+
+  $('#revert_attendee').click(function() {
+    scout   = $(this).data('cum');
+    swal({
+      title: "Confirmar",
+      text: "Eliminará la llegada y asignación de acampado del participante y tendrá que ser registrado de nuevo.",
+      type: "warning",
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      closeOnConfirm: true,
+      confirmButtonText: 'Eliminar'
+    },
+    function (confirm) {
+      if (confirm) {
+        remove_element(scout);
+        window.location.replace('/attendees/search');
+      };
+    });
+  });
 });

@@ -140,6 +140,7 @@ class Attendees extends MY_Controller {
 
 		$this->template->write('title', 'Participante');
 		$this->template->write_view('content', 'attendees/view', $data);
+		$this->template->asset_js('attendees.js');
 		$this->template->render();
 	}
 
