@@ -197,12 +197,37 @@ class Attendees extends MY_Controller {
 
 		$data = array(
 			'cum' => $cum,
+			'adult' => $this->attendee->get($cum)->row(),
 			'elements' => $this->attendee->where('responsible', $cum)->get()
 		);
 
 		$this->template->write('title', 'Elementos');
 		$this->template->write_view('content', 'attendees/elements', $data);
+		$this->template->add_js('assets/vendor/loadTemplate.js');
+		$this->template->asset_js('attendees.js');
 		$this->template->render();
+	}
+
+	public function add_element()
+	{
+		if (!$this->input->is_ajax_request()) {
+			redirect('/');
+		}
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('cum', 'cum', 'required|trim|registered|paid|already_in');
+		$this->form_validation->set_rules('responsible', 'adulto', 'required|trim');
+		$this->form_validation->set_rules('camping', 'acampado', 'required|trim');
+
+		if ($this->form_validation->run()) {
+			$element = $this->attendee->add_element($this->input->post('responsible'), $this->input->post('cum'), $this->input->post('camping'));
+			$this->camping->update_occupation();
+			$output = array('status' => 'success', 'message' => 'Se ha completado el proceso de registro.', 'member' => $element);
+		} else {
+			$output = array('status' => 'error', 'message' => validation_errors());
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 
 }

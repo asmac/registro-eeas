@@ -94,6 +94,25 @@ jQuery(document).ready(function($) {
     });
   };
 
+  var add_element = function () {
+    $('#validate_element').html('<i class="fa fa-spinner fa-spin"></i>');
+    $.post('/attendees/add_element', { cum: $('#add_element').val(), responsible: $('#responsible').val(), camping: $('#camping').val()  }, function(data, textStatus, xhr) {
+      if (data.status == 'success') {
+        swal('Agregado', 'El elemento ha sido añadido al grupo.', 'success');
+        $('.element-grid tbody').loadTemplate($('#row-tpl'), data.member, { append: true });
+        $('#add_element').val('').focus();
+      } else{
+        swal('Error', data.message, data.status);
+      };
+    })
+    .fail(function() {
+      swal('Fallo del Sistema', 'Verifique su conexión con el servidor.', 'error');
+    })
+    .always(function() {
+      $('#validate_element').html('Verificar');
+    });
+  }
+
   $('#responsible').keydown(function(event) {
     if (event.which === 13) {
       event.preventDefault();
@@ -213,4 +232,25 @@ jQuery(document).ready(function($) {
   $('#btn_search').click(function() {
     find_attendee();
   });
+
+  /*
+   * functions for manage existent
+   * elements on a group
+   */
+  $('#add_element').keydown(function(event) {
+    if (event.which === 13) {
+      event.preventDefault();
+      add_element();
+    } else if (event.which === 32) {
+      return false;
+    }
+  }).change(function() {
+    this.value = this.value.replace(/\s/g, "");
+  });
+
+  $('#validate_element').click(function() {
+    add_element();
+  });
+
+
 });

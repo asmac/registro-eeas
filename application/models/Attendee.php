@@ -15,7 +15,7 @@ class Attendee extends MY_Model {
 
 	protected function relations($id = '')
 	{
-		$this->db->select('arrive, switch, responsible, campings.name, regnal.*');
+		$this->db->select('id_camping, arrive, switch, responsible, campings.name, regnal.*');
 		$this->db->join('campings', 'campings.id = attendees.id_camping', 'left');
 		$this->db->join('regnal', 'regnal.cum = attendees.cum', 'left');
 		$this->_id = 'attendees.cum';
@@ -101,6 +101,17 @@ class Attendee extends MY_Model {
 	{
 		$count = $this->db->where('responsible', $cum)->count_all_results($this->_table);
 		return ($count > 0) ? TRUE:FALSE;
+	}
+
+	public function add_element($responsible, $cum, $camping)
+	{
+		$this->db->set('arrive', 'NOW()', FALSE)
+					 ->set('id_camping', $camping)
+					 ->set('responsible', $responsible)
+					 ->where('cum', $cum)
+					 ->update($this->_table);
+
+		return $this->get($cum)->row_array();
 	}
 
 }

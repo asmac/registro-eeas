@@ -18,9 +18,11 @@
         <form action="" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="input-group col-md-4 col-md-offset-2">
-              <input type="text" name="element" id="element" class="form-control" value="">
+              <input type="text" name="add_element" id="add_element" class="form-control" value="">
               <span class="input-group-btn">
-                <button id="verify_element" type="button" class="btn btn-primary">Verificar</button>
+                <button id="validate_element" type="button" class="btn btn-primary">Verificar</button>
+                <input type="hidden" name="camping" id="camping" value="<?php echo $adult->id_camping ?>">
+                <input type="hidden" name="responsible" id="responsible" value="<?php echo $adult->cum ?>">
               </span>
             </div>
           </div>
