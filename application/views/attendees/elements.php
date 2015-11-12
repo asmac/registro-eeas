@@ -35,7 +35,7 @@
     <section class="panel">
       <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-hover element-grid">
+            <table class="table table-hover element-grid-add">
               <thead>
                 <tr>
                   <th>CUM</th>
@@ -54,12 +54,16 @@
                   <td><?php echo $scout->nivel ?></td>
                   <td class="text-center"><?php echo $scout->grupo ?></td>
                   <td><?php echo $scout->provincia ?></td>
-                  <td width="5%" class="text-center"><a href="#" class="btn btn-danger btn-sm delete-scout"><i class="fa fa-trash"></i></a></td>
+                  <td width="5%" class="text-center"><a id="<?php echo $scout->cum ?>" href="#" class="btn btn-danger btn-sm delete-scout"><i class="fa fa-trash"></i></a></td>
                 </tr>
               <?php endforeach ?>
 
               </tbody>
             </table>
+          </div>
+
+          <div class="text-center">
+            <a href="/attendees/view/<?php echo $cum ?>" class="btn btn-primary">Regresar</a>
           </div>
         </div>
       </div>
@@ -72,7 +76,7 @@
         <td data-content="nivel"></td>
         <td data-content="grupo" class="text-center"></td>
         <td data-content="provincia"></td>
-        <td width="5%" class="text-center"><a href="#" class="btn btn-danger btn-sm delete-scout"><i class="fa fa-trash"></i></a></td>
+        <td width="5%" class="text-center"><a data-id="cum" href="#" class="btn btn-danger btn-sm delete-scout"><i class="fa fa-trash"></i></a></td>
       </tr>
     </script>
 

@@ -230,6 +230,26 @@ class Attendees extends MY_Controller {
 		$this->output->set_content_type('application/json')->set_output(json_encode($output));
 	}
 
+	public function remove_element()
+	{
+		if (!$this->input->is_ajax_request()) {
+			redirect('/');
+		}
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('cum', 'cum', 'required|trim');
+
+		if ($this->form_validation->run()) {
+			$this->attendee->remove_element($this->input->post('cum'));
+			$this->camping->update_occupation();
+			$output = array('status' => 'success', 'message' => 'Se ha eliminado al elemento.');
+		} else {
+			$output = array('status' => 'error', 'message' => validation_errors());
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($output));
+	}
+
 }
 
 /* End of file Attendees.php */

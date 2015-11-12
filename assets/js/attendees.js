@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-  var code, elements, elements_text;
+  var code, elements, elements_text, scout;
   var verify_adult = function () {
     code = $('#responsible').val();
     code = code.replace(/\s/g, "");
@@ -99,8 +99,8 @@ jQuery(document).ready(function($) {
     $.post('/attendees/add_element', { cum: $('#add_element').val(), responsible: $('#responsible').val(), camping: $('#camping').val()  }, function(data, textStatus, xhr) {
       if (data.status == 'success') {
         swal('Agregado', 'El elemento ha sido añadido al grupo.', 'success');
-        $('.element-grid tbody').loadTemplate($('#row-tpl'), data.member, { append: true });
-        $('#add_element').val('').focus();
+        $('.element-grid-add tbody').loadTemplate($('#row-tpl'), data.member, { append: true });
+        $('#add_element').val('');
       } else{
         swal('Error', data.message, data.status);
       };
@@ -110,6 +110,14 @@ jQuery(document).ready(function($) {
     })
     .always(function() {
       $('#validate_element').html('Verificar');
+    });
+  }
+
+  var remove_element = function (member) {
+    $.post('/attendees/remove_element', { cum: member }, function(data, textStatus, xhr) {
+      if (data.status == 'error') {
+        swal('Error', data.message, data.status);
+      };
     });
   }
 
@@ -252,5 +260,25 @@ jQuery(document).ready(function($) {
     add_element();
   });
 
+  $('.element-grid-add').on('click', '.delete-scout', function(e) {
+    e.preventDefault();
+    $parent = $($(this).parent().parent());
+    scout   = $(this).attr('id');
 
+    swal({
+      title: "Confirmar Acción",
+      text: "Eliminar elemento",
+      type: "warning",
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      closeOnConfirm: true,
+      confirmButtonText: 'Eliminar'
+    },
+    function (confirm) {
+      if (confirm) {
+        remove_element(scout);
+        $parent.remove();
+      };
+    });
+  });
 });

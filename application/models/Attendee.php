@@ -114,6 +114,17 @@ class Attendee extends MY_Model {
 		return $this->get($cum)->row_array();
 	}
 
+	public function remove_element($cum)
+	{
+		$this->db->set('id_camping', '0')
+				 ->set('arrive', NULL)
+				 ->set('responsible', '')
+				 ->where('cum', $cum)
+				 ->update($this->_table);
+
+		return $this->db->affected_rows();
+	}
+
 }
 
 /* End of file Attendee.php */
