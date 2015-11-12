@@ -98,7 +98,7 @@
             <tfoot>
               <tr>
                 <td colspan="6" class="text-center">
-                  <a href="/attendees/elements/<?php echo $adult->cum ?>" class="btn btn-default">Agregar / Modificar</a>
+                  <a href="/attendees/elements/<?php echo $adult->cum ?>" class="btn btn-default">Agregar / Eliminar</a>
                 </td>
               </tr>
             </tfoot>
